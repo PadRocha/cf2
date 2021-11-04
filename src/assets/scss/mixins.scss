@@ -1,0 +1,40 @@
+@import './variables';
+
+@mixin select_status {
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:focus {
+    color: rgb(255, 255, 255);
+  }
+
+  &.idN0 {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+
+  &.idN1 {
+    background-color: $idN1;
+  }
+
+  &.idN2 {
+    background-color: $idN2;
+  }
+
+  &.idN3 {
+    background-color: $idN3;
+  }
+
+  &.idN4 {
+    background-color: $idN4;
+  }
+
+  &.idN5 {
+    background-color: $idN5;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="d-block">
+  <div class="d-flex">
+    <div class="input-group input-group-sm p-2">
+      <ng-container *ngIf="hasDefective">
+        <button type="button" class="btn btn-warning" title="Advertencia">
+          <img loading="lazy" src="assets/icons/message-warning.svg" width="22.5px" draggable="false" alt="warn">
+        </button>
+      </ng-container>
+      <ng-container *ngIf="hasRole">
+        <button (click)="configKey()" type="button" class="btn btn-primary" title="Configurar clave">
+          <img loading="lazy" src="assets/icons/configuration-gears.svg" width="22.5px" draggable="false" alt="config">
+        </button>
+      </ng-container>
+    </div>
+    <div class="p-2" [textContent]="key.code"></div>
+  </div>
+</div>
+<div class="d-block p-2">
+  <div class="input-group input-group-sm">
+    <button (click)="viewImages()" [attr.disabled]="hasImage" type="button" class="btn btn-secondary">
+      <img loading="lazy" src="assets/icons/photo-camera.svg" width="22.5px" draggable="false" alt="img"
+        title="Ver imágenes">
+    </button>
+    <select *ngFor="let form of formsStatus" [formControl]="form" [class]="statusClass(form)"
+      class="form-control border-secondary" title="Cambiar status">
+      <option value=""></option>
+      <option class="idN0" value="0">0</option>
+      <option class="idN1" value="1">1</option>
+      <option class="idN2" value="2">2</option>
+      <option class="idN3" value="3">3</option>
+      <option class="idN4" value="4">4</option>
+      <option class="idN5" value="5">5</option>
+    </select>
+  </div>
+</div>
+<div class="d-block p-2 flex-grow-1" [textContent]="key.desc"></div>

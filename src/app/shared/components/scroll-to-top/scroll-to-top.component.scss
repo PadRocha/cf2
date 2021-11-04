@@ -1,0 +1,37 @@
+:host {
+  border-radius: 50%;
+  font-size: 1.5rem;
+  background-color: #9055a2dc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  /* place it at the bottom right corner */
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  /* keep it at the top of everything else */
+  z-index: 100;
+  /* hide it at first */
+  /* UPDATE: remove display none */
+  /*
+      /* hide with opacity */
+  opacity: 0;
+  /* also add a translate effect */
+  transform: translateY(100px);
+  /* and a transition */
+  transition: all 0.5s ease;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+
+  &::after {
+    content: '^';
+  }
+}
+
+:host(.showBtn) {
+  opacity: 1;
+  transform: translateY(0);
+}

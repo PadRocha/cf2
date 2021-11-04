@@ -1,0 +1,14 @@
+<ul class="pagination">
+  <li *ngIf="metadata.hasPrevPage" class="page-item">
+    <a [routerLink]="route" [queryParams]="{page: metadata.prevPage}" [queryParamsHandling]="handling" class="page-link"
+      [textContent]="'<'"></a>
+  </li>
+  <li *ngFor="let page of paginate" class="page-item">
+    <a [routerLink]="route" [queryParams]="{page: page}" [queryParamsHandling]="handling"
+      [class.active]="metadata.page === page" class="page-link">{{page}}</a>
+  </li>
+  <li *ngIf="metadata.hasNextPage" class="page-item">
+    <a [routerLink]="route" [queryParams]="{page: metadata.nextPage}" [queryParamsHandling]="handling" class="page-link"
+      [textContent]="'>'"></a>
+  </li>
+</ul>

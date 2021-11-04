@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "551605e9-178a-4bc7-bc33-971717b11d61"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,9 +34,24 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/animate.css/animate.min.css",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/styles.scss",
+              "src/fonts.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src",
+                "src/assets/scss"
+              ]
+            },
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "fabric",
+              "lodash"
+            ]
           },
           "configurations": {
             "production": {

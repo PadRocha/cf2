@@ -1,0 +1,15 @@
+<div class="smartphone-menu-trigger" (click)="toogleSlide()"></div>
+<input [formControl]="regex" type="search" class="form-control" maxlength="6" autocomplete="off" spellcheck="false"
+  autocorrect="off" placeholder="Linea...">
+<span class="container">Total: {{lineTotalDocs}}</span>
+<ul (scroll)="onScroll($event)">
+  <li (click)="onAll()">Todas</li>
+  <li *ngFor="let line of lines" (click)="onSelected(line.identifier)">
+    {{line.identifier}}
+    <span>{{line.name}}</span>
+  </li>
+  <li *ngIf="lineIsLoading" class="text-center">
+    <img src="assets/image/wait5.gif" alt="Wait Line" height="100">
+  </li>
+  <li *ngIf="lineTotalDocs === 0 && !lineIsLoading" class="error">No existe línea</li>
+</ul>

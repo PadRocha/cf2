@@ -1,0 +1,69 @@
+@import "variables";
+
+$percent: 30%;
+
+@mixin button($color) {
+  border: none;
+  background-color: inherit;
+  color: $color;
+
+  &::after {
+    content: '['attr(data-info)']';
+  }
+
+  &:hover {
+    color: darken($color, $percent);
+  }
+
+  &:active {
+    color: lighten($color, $percent);
+  }
+
+  &.active {
+    color: darken($color, $percent);
+    text-decoration-line: line-through;
+  }
+}
+
+.table-container {
+  height: calc(100vh - 154px);
+  overflow: auto;
+  scrollbar-color: #11171a rgba(255, 255, 255, 0.1);
+
+  &::-webkit-scrollbar {
+    width: 1em;
+    height: 1em;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #11171a;
+  }
+}
+
+.idN0 {
+  @include button($idN0);
+}
+
+.idN1 {
+  @include button($idN1);
+}
+
+.idN2 {
+  @include button($idN2);
+}
+
+.idN3 {
+  @include button($idN3);
+}
+
+.idN4 {
+  @include button($idN4);
+}
+
+.idN5 {
+  @include button($idN5);
+}

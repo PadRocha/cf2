@@ -1,0 +1,61 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Editar Clave</h5>
+    </div>
+    <div class="modal-body d-flex">
+      <div class="col-lg-6 flex-column order-lg-1 order-2 p-2">
+        <div class="flex-row pb-2">
+          <div class="input-group">
+            <input [value]="key.code.slice(0, 6)" type="text" class="form-control w-75" readonly disabled>
+            <input [value]="key.code.slice(6, 10)" type="text" class="form-control w-25" readonly disabled>
+          </div>
+        </div>
+        <div class="flex-row pb-2">
+          <div class="input-group">
+            <input [value]="key.desc" type="text" class="form-control" readonly disabled>
+          </div>
+        </div>
+        <div class="flex-row">
+          <div *ngFor="let image of images" class="col-4 d-inline-block px-1">
+            <img loading="lazy" [src]="transform(image)" [alt]="image.idN" class="img-fluid img-thumbnail"
+              draggable="false">
+          </div>
+        </div>
+      </div>
+      <form [formGroup]="keyUpdate" (ngSubmit)="onSubmit()" class="col-lg-6 flex-column order-lg-2 order-1 p-2">
+        <div class="flex-row pb-2">
+          <div class="input-group">
+            <input [class.is-invalid]="lineValidator" type="text" class="form-control w-75" formControlName="line"
+              maxlength="6" placeholder="Línea">
+            <input [class.is-invalid]="codeValidator" type="text" class="form-control w-25" formControlName="code"
+              maxlength="4" placeholder="Código">
+          </div>
+        </div>
+        <div class="flex-row pb-2">
+          <div class="input-group">
+            <input [class.is-invalid]="descValidator" type="text" class="form-control" formControlName="desc"
+              placeholder="Descripción">
+          </div>
+        </div>
+        <div class="flex-row d-grid gap-2">
+          <button [disabled]="isLoading" type="submit" class="btn btn-primary pb-2">Actualizar clave</button>
+          <div class="d-flex btn-group" role="group">
+            <select [formControl]="resetImage" [class]="statusClass()" class="form-select w-25 rounded-0 rounded-start">
+              <option value=""></option>
+              <option class="idN0" value="0">0</option>
+              <option class="idN1" value="1">1</option>
+              <option class="idN2" value="2">2</option>
+              <option class="idN3" value="3">3</option>
+              <option class="idN4" value="4">4</option>
+            </select>
+            <button (click)="onReset()" [disabled]="isLoading" type="button"
+              class="btn btn-outline-secondary w-75 rounded-0 rounded-end">
+              Resetear clave status
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

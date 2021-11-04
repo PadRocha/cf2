@@ -1,0 +1,16 @@
+<div id="tagInput">
+  <span *ngFor="let tag of tags; index as i" [class.invalid]="exists(tag)"
+    class="tag animate__animated animate__bounceIn">
+    {{tag}}
+    <a (click)="removeTag(i)" class="close">x</a>
+  </span>
+  <input #tagInput (keydown)="checkBackspaceOnEmpty($event)" (keyup.ArrowDown)="optionsFocus(options)"
+    (focus)="travelOption = false" (blur)="blurTag()" [formControl]="stringTag" id="tag-input"
+    placeholder="Selecciona el tag" />
+</div>
+<span #options class="options">
+  <button *ngFor="let option of regexOptions; index as i" (keyup)="nextFocus($event, i)" (click)="optionClick(option)"
+    type="button" class="option">
+    {{option | capitalize}}
+  </button>
+</span>

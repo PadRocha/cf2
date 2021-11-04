@@ -1,0 +1,6 @@
+@import "mixins";
+
+option,
+select {
+  @include select_status;
+}

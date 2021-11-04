@@ -1,0 +1,106 @@
+$tag: #9055a2;
+$tagInvalid: #000;
+
+#tagInput {
+  background: #eee;
+  border-radius: 5px;
+  padding: 12px 10px 7px 15px;
+
+  > span {
+    display: inline-block;
+  }
+
+  .tag {
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: 5px 8px;
+    background: $tag;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1;
+    transition: background 250ms ease-in-out;
+    position: relative;
+
+    &:hover {
+      background: darken($tag, 5%);
+    }
+
+    a {
+      margin-left: 5px;
+      padding-left: 5px;
+      color: white;
+      text-decoration: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+    }
+
+    #pop-over-edit {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-bottom: 5px;
+
+      input {
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+        padding: 5px;
+        margin: 0;
+      }
+    }
+  }
+
+  .invalid {
+    background: $tagInvalid;
+  }
+
+  input {
+    font-family: "Roboto Mono", monospace;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    background: none;
+    border: none;
+    line-height: 22px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.options {
+  position: absolute;
+  background: #eee;
+  list-style: none;
+  max-height: 116px;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  z-index: 1;
+
+  .option {
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 2.5px 10px;
+    width: 100%;
+    border: none;
+    display: block;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      background: rgb(214, 214, 214);
+    }
+
+    &:active {
+      background: rgb(180, 180, 180);
+    }
+  }
+}

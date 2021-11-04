@@ -1,0 +1,35 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" [textContent]="key.code"></h5>
+    </div>
+    <div class="modal-body d-flex justify-content-center">
+      <div class="d-block">
+        <div class="slider">
+          <button (click)="prevImage()" [class.d-none]="images.length === 1" class="arrow arrow-left">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+              <path fill="none" d="M0 0h50v50H0z" />
+              <path d="M47.25 15l-2.086-2.086L25 33.078 4.836 12.914 2.75 15 25 37.25" />
+            </svg>
+          </button>
+          <button (click)="nextImage()" [class.d-none]="images.length === 1" class="arrow arrow-right">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+              <path fill="none" d="M0 0h50v50H0z" />
+              <path d="M47.25 15l-2.086-2.086L25 33.078 4.836 12.914 2.75 15 25 37.25" />
+            </svg>
+          </button>
+          <div class="slides btn">
+            <div *ngFor="let img of images; let i = index" (click)="configImage(img.idN)"
+              [class.d-none]="!currentImage(i)" [id]="img.idN + 1" class="item animate__animated animate__fadeIn">
+              <img loading="lazy" [src]="img.url" alt="" draggable="false">
+            </div>
+          </div>
+        </div>
+        <div class="dots">
+          <span *ngFor="let img of images; let i = index" (click)="current_image = i"
+            [class.dot-current]="currentImage(i)" class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<ng-container #menu_container></ng-container>
+<aside-lines (selected)="onLineSelected($event)"></aside-lines>
+<div class="container">
+  <div class="row g-0 mt-3">
+    <input [formControl]="search" type="text" class="form-control"
+      placeholder="ACCPVH || Tsuru || code:ACC...;desc:Tsuru... || code:ACC|ADR...;desc: Tsuru|Nissan...">
+  </div>
+  <div class="d-flex justify-content-between py-2">
+    <div class="d-none d-md-flex">
+      <div class="d-flex">Σ [{{this.keys.total}}]</div>
+      <div class="d-flex flex-row px-lg-2 ps-2">
+        <div class="d-flex align-self-end pe-1">
+          <img loading="lazy" src="assets/icons/image.svg" width="17px" draggable="false" alt="percent">
+        </div>
+        <div>[{{this.keys.percentage | number : '1.2-2'}}%]</div>
+      </div>
+    </div>
+    <div class="d-flex">
+      <div *ngFor="let type of status_list" class="d-flex flex-row px-lg-2 pe-2">
+        <div class="d-flex align-self-end pe-1">
+          <img loading="lazy" [src]="statusIcon(type)" [alt]="keys.statusName(type)" width="17px" draggable="false">
+        </div>
+        <button (click)="statUsChange(type)" [attr.data-info]="keys.status(type)"
+          [class.active]="current_status === type" type="button" class="idN{{type}}"
+          title="Buscar imágenes con status"></button>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column table-container" (scroll)="onScroll($event)">
+    <key *ngFor="let key of keys.get" [key]="key"></key>
+    <div *ngIf="keys.loading" class="d-flex justify-content-center w-100">
+      <img src="assets/image/wait12.gif" alt="Wait Key" height="100" draggable="false" alt="Loading">
+    </div>
+    <div *ngIf="!keys.loading && keys.isEmpty" class="d-flex justify-content-center w-100 h-75">
+      <img loading="lazy" src="assets/image/not-found.svg" alt="Not found" class="img-fluid p-5" draggable="false"
+        alt="Not Found">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+@import "mixins";
+
+option,
+select {
+  @include select_status;
+}
+
+.col-4 {
+  &:first-of-type {
+    padding-left: 0 !important;
+  }
+
+  &:last-of-type {
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .modal-body {
+    flex-direction: column;
+    flex: 1;
+  }
+}
+
+img.blur {
+  filter: blur(.5em);
+}

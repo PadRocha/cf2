@@ -1,0 +1,35 @@
+<div *ngIf="user.logged" class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
+  id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link">Incluir Proveedor</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Crear Línea</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">Agregar Claves</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">PDF</a>
+    </li>
+  </ul>
+</div>
+<div [ngClass]="{'mx-auto order-0': user.logged}">
+  <a class="navbar-brand mx-auto" [routerLink]="['/home']">
+    <img src="../assets/image/simbavector.svg" width="30" height="30" class="d-inline-block align-top bg-light rounded">
+    Catalogo
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div>
+<div *ngIf="user.logged" class="navbar-collapse collapse w-100 order-3 dual-collapse2 d-md-flex justify-content-end"
+  id="navbarSupportedContent">
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-link btn" (click)="logOut()">
+      Salir
+    </li>
+  </ul>
+</div>
