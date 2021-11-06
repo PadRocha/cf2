@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { UserService } from '@auth/services';
-import { Alert } from '@shared/functions';
+import { Alert } from '@shared/utils';
 import { NavigationService } from '@shared/services';
 import { filter, pairwise } from 'rxjs/operators';
 

@@ -4,7 +4,7 @@ import { UserService } from '@auth/services';
 import { IImage } from '@home/models/image';
 import { IKey } from '@home/models/key';
 import { ExchangesService, KeysService, ShippingsService } from '@home/services';
-import { Alert } from '@shared/functions';
+import { Alert } from '@shared/utils';
 import { debounceTime, pairwise, startWith } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 

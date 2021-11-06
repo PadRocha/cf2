@@ -5,7 +5,7 @@ import { ModalEditorComponent, ModalImageComponent, ModalKeyComponent } from '@h
 import { IImage } from '@home/models/image';
 import { IKey } from '@home/models/key';
 import { IKeyInfo, IPaginate } from '@home/models/metadata';
-import { Alert } from '@shared/functions';
+import { Alert } from '@shared/utils';
 import { Subject } from 'rxjs';
 
 interface ISearch {

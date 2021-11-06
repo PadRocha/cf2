@@ -6,7 +6,7 @@ import { environment } from '@environments/environment';
 import { IImage } from '@home/models/image';
 import { IKey } from '@home/models/key';
 import { ExchangesService, KeysService } from '@home/services';
-import { Alert } from '@shared/functions';
+import { Alert } from '@shared/utils';
 import { Modal } from 'bootstrap';
 
 @Component({
