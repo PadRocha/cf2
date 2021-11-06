@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { environment } from '@environments/environment';
 import { ModalEditorComponent, ModalImageComponent, ModalKeyComponent } from '@home/components';
 import { IImage } from '@home/models/image';
@@ -28,14 +28,12 @@ export class KeysService {
   private url: string;
   private info: IKeyInfo;
   private keys_array: IKey[];
-  private keys_map: Map<string, IKey>;
   private metadata: IPaginate;
   private page: number;
   private params: ISearch;
 
   constructor(
     private http: HttpClient,
-    private _factory: ComponentFactoryResolver,
   ) {
     this.viewChange$ = new Subject();
     this.resetSatus = new Subject();
@@ -52,7 +50,6 @@ export class KeysService {
       success: 0
     };
     this.keys_array = new Array<IKey>();
-    this.keys_map = new Map();
     this.metadata = {
       totalDocs: 0,
       limit: 0,
@@ -99,20 +96,22 @@ export class KeysService {
   more(): void {
     ++this.page;
     this.loading = true;
-    this.getKeys({ page: this.page, ...this.params }).subscribe(({ data, metadata }) => {
-      this.keys_array = this.keys_array.concat(data);
-      this.metadata = metadata;
-      this.loading = false;
-    }, err => {
-      this.loading = false;
+    this.getKeys({ page: this.page, ...this.params }).subscribe({
+      next: ({ data, metadata }) => {
+        this.keys_array = this.keys_array.concat(data);
+        this.metadata = metadata;
+        this.loading = false;
+      },
+      error: err => {
+        this.loading = false;
+      }
     });
   }
 
   showImages(key: IKey, idN?: number): void {
     if (!!this.view) {
       this.view.clear();
-      const factory = this._factory.resolveComponentFactory(ModalImageComponent);
-      this.modalImage = this.view.createComponent(factory);
+      this.modalImage = this.view.createComponent(ModalImageComponent);
       this.modalImage.instance.key = key;
       this.modalImage.changeDetectorRef.detectChanges();
       this.modalImage.instance.show(idN);
@@ -122,8 +121,7 @@ export class KeysService {
   edit(key: IKey) {
     if (!!this.view) {
       this.view.clear();
-      const factory = this._factory.resolveComponentFactory(ModalKeyComponent);
-      this.modalKey = this.view.createComponent(factory);
+      this.modalKey = this.view.createComponent(ModalKeyComponent);
       this.modalKey.instance.key = key;
       this.modalKey.changeDetectorRef.detectChanges();
       this.modalKey.instance.show();
@@ -133,8 +131,7 @@ export class KeysService {
   editImage(key: IKey, image: IImage) {
     if (!!this.view) {
       this.view.clear();
-      const factory = this._factory.resolveComponentFactory(ModalEditorComponent);
-      this.modalEditor = this.view.createComponent(factory);
+      this.modalEditor = this.view.createComponent(ModalEditorComponent);
       this.modalEditor.instance.key = key;
       this.modalEditor.instance.image = image;
       this.modalEditor.changeDetectorRef.detectChanges();

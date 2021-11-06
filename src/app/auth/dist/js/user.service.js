@@ -47,10 +47,11 @@ var UserService = /** @class */ (function (_super) {
     }
     UserService.prototype.update = function () {
         var _this = this;
-        this.data$.subscribe(function (user) {
-            _this.userChange$.next(user);
-        }, function () {
-            _this.destroy();
+        this.data$.subscribe({
+            next: function (user) {
+                _this.userChange$.next(user);
+            },
+            error: this.destroy
         });
     };
     UserService.prototype.destroy = function () {

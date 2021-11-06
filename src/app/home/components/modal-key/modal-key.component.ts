@@ -103,22 +103,25 @@ export class ModalKeyComponent implements AfterViewInit, OnDestroy {
   onSubmit(): void {
     if (this.keyUpdate.valid && !this.isLoading) {
       this.isLoading = true;
-      this.exchanges.updateKey(this.key._id, this.keyUpdate.getRawValue() as IKey).subscribe(({ data }) => {
-        this.keys.update = data;
-        this.hide();
-        this.isLoading = false;
-        Alert.fire({
-          title: 'Clave Actualizada',
-          text: this.key.code,
-          icon: 'success',
-        });
-      }, () => {
-        this.isLoading = false;
-        Alert.fire({
-          title: 'Error Actualización',
-          text: this.key.code,
-          icon: 'error',
-        });
+      this.exchanges.updateKey(this.key._id, this.keyUpdate.getRawValue() as IKey).subscribe({
+        next: ({ data }) => {
+          this.keys.update = data;
+          this.hide();
+          this.isLoading = false;
+          Alert.fire({
+            title: 'Clave Actualizada',
+            text: this.key.code,
+            icon: 'success',
+          });
+        },
+        error: () => {
+          this.isLoading = false;
+          Alert.fire({
+            title: 'Error Actualización',
+            text: this.key.code,
+            icon: 'error',
+          });
+        }
       });
     }
   }
@@ -128,22 +131,25 @@ export class ModalKeyComponent implements AfterViewInit, OnDestroy {
       this.isLoading = true;
       const type = this.resetImage.value;
       const body = type ? { status: +type } : {};
-      this.exchanges.resetKey(this.key._id, body).subscribe(({ data }) => {
-        this.keys.resetImage(this.key._id, type);
-        this.hide();
-        this.isLoading = false;
-        Alert.fire({
-          title: 'Imagenes Reseteadas',
-          text: this.key.code,
-          icon: 'success',
-        });
-      }, () => {
-        this.isLoading = false;
-        Alert.fire({
-          title: 'Error Actualización',
-          text: this.key.code,
-          icon: 'error',
-        });
+      this.exchanges.resetKey(this.key._id, body).subscribe({
+        next: ({ data }) => {
+          this.keys.resetImage(this.key._id, type);
+          this.hide();
+          this.isLoading = false;
+          Alert.fire({
+            title: 'Imagenes Reseteadas',
+            text: this.key.code,
+            icon: 'success',
+          });
+        },
+        error: () => {
+          this.isLoading = false;
+          Alert.fire({
+            title: 'Error Actualización',
+            text: this.key.code,
+            icon: 'error',
+          });
+        }
       });
     }
   }

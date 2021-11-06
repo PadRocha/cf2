@@ -38,10 +38,11 @@ export class UserService extends AuthService {
   }
 
   update(): void {
-    this.data$.subscribe(user => {
-      this.userChange$.next(user);
-    }, () => {
-      this.destroy();
+    this.data$.subscribe({
+      next: user => {
+        this.userChange$.next(user);
+      },
+      error: this.destroy
     });
   }
 

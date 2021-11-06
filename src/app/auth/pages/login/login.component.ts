@@ -45,20 +45,20 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.userData.valid) {
-      this.user.loginUser(this.userData.getRawValue()).subscribe(
-        ({ token }) => {
+      this.user.loginUser(this.userData.getRawValue()).subscribe({
+        next: ({ token }) => {
           this.user.setToken(token);
           this.user.update();
           this.router.navigate(['/home']);
         },
-        err => {
+        error: err => {
           Alert.fire({
             title: 'Access Denied',
             text: 'Server error',
             icon: 'error',
           });
         }
-      );
+      });
     }
   }
 }

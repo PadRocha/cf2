@@ -26,7 +26,7 @@ export class TagInputComponent implements OnInit {
 
   ngOnInit() {
     this.stringTag.valueChanges.subscribe((value: string) => {
-      const lastChar = value.substr(value.length - 1);
+      const lastChar = value.substring(value.length - 1);
       if (lastChar === ',') {
         const tagName = value.replace(',', '').toLowerCase().trim();
 

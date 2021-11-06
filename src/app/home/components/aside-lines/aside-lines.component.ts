@@ -41,13 +41,16 @@ export class AsideLinesComponent implements OnInit {
 
   private getLines(): void {
     this.lineIsLoading = true;
-    this.arrivals.getLines(this.params).subscribe(({ data, metadata }) => {
-      this.lines = this.lines.concat(data);
-      this.lineHasNextPage = metadata.hasNextPage;
-      this.lineTotalDocs = metadata.totalDocs;
-      this.lineIsLoading = false;
-    }, err => {
-      this.lineIsLoading = false;
+    this.arrivals.getLines(this.params).subscribe({
+      next: ({ data, metadata }) => {
+        this.lines = this.lines.concat(data);
+        this.lineHasNextPage = metadata.hasNextPage;
+        this.lineTotalDocs = metadata.totalDocs;
+        this.lineIsLoading = false;
+      },
+      error: err => {
+        this.lineIsLoading = false;
+      }
     });
   }
 

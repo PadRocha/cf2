@@ -109,23 +109,26 @@ export class KeyComponent implements OnInit {
           } else if (prev !== '5' && next !== '5') {
             const body = next ? { status: +next } : {};
             form.disable({ emitEvent: false });
-            this.exchanges.updateStatus(this.key._id, idN, body).subscribe(({ data }) => {
-              this.key.image = data.image;
-              this.keys.replace(prev, next);
-              form.enable({ emitEvent: false });
-              Alert.fire({
-                title: 'Actualizado',
-                text: `${this.key.code} ~ [${idN + 1}] status`,
-                icon: 'success',
-              });
-            }, () => {
-              form.setValue(prev);
-              form.enable({ emitEvent: false });
-              Alert.fire({
-                title: 'Error Actualización',
-                text: `${this.key.code} ~ [${idN + 1}] status`,
-                icon: 'error',
-              });
+            this.exchanges.updateStatus(this.key._id, idN, body).subscribe({
+              next: ({ data }) => {
+                this.key.image = data.image;
+                this.keys.replace(prev, next);
+                form.enable({ emitEvent: false });
+                Alert.fire({
+                  title: 'Actualizado',
+                  text: `${this.key.code} ~ [${idN + 1}] status`,
+                  icon: 'success',
+                });
+              },
+              error: () => {
+                form.setValue(prev);
+                form.enable({ emitEvent: false });
+                Alert.fire({
+                  title: 'Error Actualización',
+                  text: `${this.key.code} ~ [${idN + 1}] status`,
+                  icon: 'error',
+                });
+              }
             });
           }
         });
