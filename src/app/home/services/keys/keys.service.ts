@@ -147,7 +147,7 @@ export class KeysService {
   }
 
   get get() {
-    return this.keys_array.sort((a, b) => (a.code > b.code) ? 1 : ((b.code > a.code) ? -1 : 0));
+    return this.keys_array.sort(({ code: a }, { code: b }) => (a > b) ? 1 : (b > a) ? -1 : 0);
   }
 
   get hasNextPage() {

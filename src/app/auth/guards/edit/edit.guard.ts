@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { UserService } from '@auth/services';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoggedGuard implements CanActivate {
+export class EditGuard implements CanActivate {
   constructor(
     private user: UserService,
     private router: Router,
@@ -15,12 +14,12 @@ export class LoggedGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
     return this.user.userSync.pipe(
-      map(({ identifier }) => {
-        if (!!identifier) {
+      map(() => {
+        if (this.user.hasRole(['EDIT', 'GRANT', 'ADMIN'])) {
           return true;
         }
 
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/home']);
         return false;
       }),
     );

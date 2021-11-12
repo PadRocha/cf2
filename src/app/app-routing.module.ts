@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoggedGuard, LoginGuard } from '@auth/guards';
+import { LoggedGuard, LoginGuard, EditGuard } from '@auth/guards';
 
 const routes: Routes = [
   {
@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'home',
     canActivate: [LoggedGuard],
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'edit',
+    canActivate: [LoggedGuard, EditGuard],
+    loadChildren: () => import('./edit/edit.module').then(m => m.EditModule)
   },
   {
     path: '**',
