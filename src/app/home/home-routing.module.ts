@@ -8,11 +8,6 @@ const routes: Routes = [
     children: [
       { path: 'pdf', component: CreatePDFComponent },
       { path: '**', component: HomeComponent },
-      // {
-      //   path: '**',
-      //   redirectTo: 'home',
-      //   pathMatch: 'full'
-      // }
     ]
   }
 ];

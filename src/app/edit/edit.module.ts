@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { EditRoutingModule } from './edit-routing.module';
 import { ContainerComponent } from './container/container.component';
 
-
 @NgModule({
   declarations: [
     ContainerComponent
